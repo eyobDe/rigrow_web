@@ -3,32 +3,68 @@
 @tailwind utilities;
 
 :root {
-  /* Minimal monochrome foundation with Rigro accent */
-  --background: 0 0% 99%;
-  --foreground: 0 0% 12%;
+  color-scheme: light;
+  /* Elevated light palette with Rigro greens */
+  --background: 150 38% 96%;
+  --foreground: 152 24% 14%;
 
-  /* Accent green drawn from Rigro primary mark */
-  --primary: 125 36% 35%;
-  --primary-foreground: 0 0% 98%;
+  --primary: 155 63% 34%;
+  --primary-foreground: 150 84% 94%;
 
-  --secondary: 0 0% 93%;
-  --secondary-foreground: 0 0% 16%;
+  --secondary: 150 41% 93%;
+  --secondary-foreground: 152 20% 24%;
 
-  --accent: 125 29% 45%;
-  --accent-foreground: 0 0% 98%;
+  --accent: 157 58% 42%;
+  --accent-foreground: 150 100% 96%;
 
-  --muted: 0 0% 90%;
-  --muted-foreground: 0 0% 38%;
+  --muted: 152 28% 86%;
+  --muted-foreground: 155 16% 32%;
 
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 12%;
+  --card-foreground: 152 24% 14%;
 
-  --border: 0 0% 82%;
-  --input: 0 0% 82%;
-  --ring: 125 36% 35%;
-  --destructive: 0 84% 55%;
+  --border: 155 28% 80%;
+  --input: 155 28% 80%;
+  --ring: 155 63% 34%;
+  --destructive: 2 77% 56%;
   --destructive-foreground: 0 0% 100%;
-  --radius: 0.75rem;
+  --radius: 1.25rem;
+
+  --surface-backdrop: linear-gradient(160deg, hsl(156 47% 94%) 0%, hsl(150 48% 98%) 45%, hsl(156 53% 92%) 100%);
+  --surface-spotlight: radial-gradient(120% 90% at 15% 15%, hsla(155 72% 75% / 0.35), transparent 55%),
+    radial-gradient(120% 120% at 85% 30%, hsla(165 75% 65% / 0.25), transparent 60%);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --background: 199 60% 6%;
+  --foreground: 160 36% 86%;
+
+  --primary: 153 73% 47%;
+  --primary-foreground: 166 100% 12%;
+
+  --secondary: 199 47% 16%;
+  --secondary-foreground: 160 38% 90%;
+
+  --accent: 168 77% 62%;
+  --accent-foreground: 170 100% 14%;
+
+  --muted: 197 42% 26%;
+  --muted-foreground: 164 32% 78%;
+
+  --card: 200 58% 9%;
+  --card-foreground: 160 36% 86%;
+
+  --border: 197 42% 28%;
+  --input: 197 42% 28%;
+  --ring: 153 73% 47%;
+  --destructive: 0 80% 64%;
+  --destructive-foreground: 0 0% 100%;
+
+  --surface-backdrop: linear-gradient(160deg, hsl(208 72% 8%) 0%, hsl(203 64% 12%) 52%, hsl(198 70% 9%) 100%);
+  --surface-spotlight: radial-gradient(120% 90% at 12% 18%, hsla(162 88% 60% / 0.28), transparent 60%),
+    radial-gradient(120% 120% at 82% 32%, hsla(199 84% 58% / 0.22), transparent 70%);
 }
 
 @layer base {
@@ -36,9 +72,23 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply min-h-screen bg-background text-foreground antialiased;
     font-family: 'Helvetica Neue', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
       sans-serif;
+    background-image:
+      var(--surface-spotlight),
+      var(--surface-backdrop);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition:
+      background-image 0.4s ease,
+      background-color 0.4s ease;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.2);
+    color: hsl(var(--primary));
   }
 
   h1 {
@@ -51,7 +101,7 @@
     @apply scroll-m-20 text-2xl font-semibold tracking-tight;
   }
   .lead {
-    @apply text-xl text-muted-foreground;
+    @apply text-xl text-muted-foreground/90;
   }
   small {
     @apply text-sm font-medium leading-none;
@@ -60,5 +110,3 @@
     @apply text-foreground transition-colors underline-offset-[6px] hover:text-primary hover:underline;
   }
 }
-
-
