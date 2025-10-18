@@ -151,9 +151,7 @@ export function AppShell() {
         </Sheet>
       </header>
       <main className="flex-1">
-        <Container className="py-16">
-          <Outlet />
-        </Container>
+        <Outlet />
       </main>
       <Footer />
     </div>

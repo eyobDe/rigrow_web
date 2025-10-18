@@ -1,11 +1,13 @@
 import { Button } from '../components/ui/button'
+import { ArrowDownLeft, ArrowRight, CheckCircle2 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Input } from '../components/ui/input'
+import { Container } from '../components/Container'
 
 const stats = [
-  { value: '20%', label: 'Improvement in Water Use Efficiency' },
-  { value: '35%', label: 'Water Savings' },
-  { value: '20%', label: 'Energy Savings' },
+  { value: '20%', caption: 'Less water wasted across irrigated acres' },
+  { value: '35%', caption: 'Average reduction in freshwater use' },
+  { value: '20%', caption: 'Energy saved through precise scheduling' },
 ]
 
 const planningHighlights = [
@@ -54,235 +56,304 @@ const monitoringHighlights = [
   },
 ]
 
+const features = [...planningHighlights, ...monitoringHighlights]
+
 export function Home() {
   return (
-    <div className="space-y-24">
+    <div className="flex flex-col">
       <section
         id="overview"
-        className="relative overflow-hidden rounded-[3rem] border border-border/60 bg-card/90 px-8 py-14 shadow-[0_42px_96px_-48px_rgba(10,24,16,0.58)] backdrop-blur-xl sm:px-12 lg:px-16"
+        className="relative isolate flex min-h-[calc(100dvh-4.75rem)] flex-col overflow-hidden text-white"
       >
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_110%_at_15%_15%,hsla(155,73%,47%,0.26),transparent_55%),radial-gradient(110%_100%_at_88%_15%,hsla(196,82%,63%,0.22),transparent_72%)]" />
-        <div className="relative grid gap-12 lg:grid-cols-[1.1fr,0.9fr] lg:items-center">
-          <div className="space-y-7">
-            <div className="inline-flex items-center gap-3 rounded-full border border-primary/40 bg-primary/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.45em] text-primary/80 backdrop-blur">
-              <span className="block h-2 w-2 rounded-full bg-primary" />
-              <span>Intelligent irrigation</span>
-            </div>
-            <div className="space-y-5">
-              <h1 className="text-balance text-4xl font-semibold leading-tight text-foreground sm:text-[2.6rem] lg:text-[3rem]">
+        <img
+          src="/branding/assets/header-image-1.jpg"
+          alt="Rigrow irrigation analytics dashboard"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(3,7,4,0.78)_0%,rgba(16,35,22,0.62)_38%,rgba(25,56,34,0.48)_68%,rgba(33,70,39,0.46)_100%)]" />
+        <div className="relative z-10 flex flex-1 flex-col justify-between">
+          <div className="mx-auto w-full max-w-6xl px-6 pt-[clamp(1.5rem,4vw,2.75rem)] sm:px-12 lg:px-20">
+            <div className="max-w-2xl space-y-3">
+              <h1 className="text-balance text-4xl font-semibold leading-tight sm:text-[2.8rem] lg:text-[3.25rem]">
                 Irrigation Water Management Solution
               </h1>
-              <p className="text-lg leading-relaxed text-foreground/80">
-                Our solution delivers analytics both at field level and farm level, to deliver the right
-                amount of water, where and when needed.
-              </p>
-              <p className="text-base leading-relaxed text-muted-foreground">
-                A hybrid remote sensing and sensor-based solution brings the best of both techniques for
-                water application planning and monitoring through our advanced IAS (Intelligent Agriculture
-                System).
+              <p className="text-lg leading-relaxed text-white/85">
+                Deliver the right amount of water exactly where and when your fields need it with Rigrow's
+                Intelligent Agriculture System. Plan, monitor, and respond in real time with blended sensor and remote-sensing insights built for growers and irrigation teams.
               </p>
             </div>
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Button
                 size="lg"
-                className="h-12 rounded-full bg-gradient-to-r from-primary via-accent to-primary/80 px-8 text-sm font-semibold tracking-[0.24em] text-primary-foreground shadow-[0_28px_48px_-28px_hsla(153,73%,47%,0.75)] hover:brightness-110"
+                className="h-10 rounded-full bg-primary px-6 text-sm font-semibold tracking-[0.22em] text-primary-foreground shadow-[0_24px_48px_-24px_rgba(127,96,51,0.8)] transition hover:brightness-110"
                 asChild
               >
-                <a href="#contact">Request a Free Demo</a>
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="h-12 rounded-full border border-primary/40 bg-transparent px-8 text-sm font-semibold tracking-[0.24em] text-primary hover:bg-primary/10"
-                asChild
-              >
-                <a href="#solution">Explore Planning</a>
+                <a href="#contact">Get in Touch</a>
               </Button>
             </div>
-            <div className="grid gap-4 sm:grid-cols-3">
+          </div>
+          <div className="mx-auto w-full max-w-6xl px-6 pb-0 sm:px-12 sm:pb-1 lg:px-20 mb-6 sm:mb-8">
+            <div className="grid gap-3 sm:grid-cols-3">
               {stats.map((stat) => (
                 <div
-                  key={stat.label}
-                  className="rounded-2xl border border-white/20 bg-background/60 p-5 text-left shadow-[0_22px_34px_-26px_rgba(12,22,18,0.55)] backdrop-blur-xl dark:border-white/10 dark:bg-background/40"
+                  key={stat.caption}
+                  className="rounded-xl border border-white/25 bg-white/15 px-3 py-3 shadow-[0_20px_40px_-24px_rgba(12,18,15,0.75)] backdrop-blur-xl"
                 >
-                  <p className="text-3xl font-semibold text-foreground">{stat.value}</p>
-                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.32em] text-muted-foreground/80">
-                    {stat.label}
+                  <p className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                    {stat.value}
                   </p>
+                  <p className="mt-2 text-xs leading-relaxed text-white/80">{stat.caption}</p>
                 </div>
               ))}
             </div>
           </div>
-          <div className="relative mx-auto w-full max-w-md pb-12 sm:pb-0">
-            <div className="relative overflow-hidden rounded-[2.4rem] border border-white/15 shadow-[0_48px_88px_-54px_rgba(12,23,16,0.85)]">
-              <img
-                src="/branding/assets/header-image-1.jpg"
-                alt="Rigrow irrigation analytics dashboard"
-                className="h-full w-full object-cover"
-              />
+          <div className="absolute bottom-4 right-4">
+            <button
+              onClick={() => {
+                document.getElementById('solution')?.scrollIntoView({ behavior: 'smooth' })
+              }}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10 backdrop-blur-xl transition hover:bg-white/20"
+              aria-label="Scroll down"
+            >
+              <svg
+                className="h-4 w-4 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <Container className="flex flex-col gap-24 py-20">
+        <section id="story" className="space-y-8">
+          <div className="space-y-3 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/60 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.42em] text-muted-foreground/80">
+              <span className="inline-flex h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
+              Precision Farming
             </div>
-            <div className="absolute -bottom-10 left-1/2 hidden w-40 -translate-x-1/2 overflow-hidden rounded-3xl border border-white/20 shadow-[0_28px_48px_-26px_rgba(12,22,18,0.6)] sm:block">
+            <h2 className="text-3xl font-semibold text-foreground sm:text-[2.25rem]">Precision Farming is Here</h2>
+            <p className="mx-auto max-w-3xl text-base leading-relaxed text-muted-foreground">
+              Multiple growers, many fields, one consistent challenge. See how field scale complexity rolls up to
+              100+ fields and how Rigrow streamlines planning into equitable, efficient, productive actions.
+            </p>
+          </div>
+
+          <div className="relative grid gap-6 lg:grid-cols-3 lg:auto-rows-max lg:gap-10">
+            {/* Left: Solution cards (stacked) */}
+            <div className="order-3 space-y-4 lg:order-none lg:col-start-1 lg:row-start-1 lg:self-center">
+              <div className="rounded-[2.4rem] border border-border/60 bg-card/85 p-6 sm:p-8 shadow-[0_48px_88px_-52px_rgba(12,23,16,0.7)] backdrop-blur">
+                <h3 className="text-base font-semibold text-foreground">Equity</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Fair water allocation and schedule priorities across fields and growers.
+                </p>
+              </div>
+              <div className="rounded-[2.4rem] border border-border/60 bg-card/85 p-6 sm:p-8 shadow-[0_48px_88px_-52px_rgba(12,23,16,0.7)] backdrop-blur">
+                <h3 className="text-base font-semibold text-foreground">Efficiency</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Reduce water and energy waste with optimized routes and precise timing.
+                </p>
+              </div>
+              <div className="rounded-[2.4rem] border border-border/60 bg-card/85 p-6 sm:p-8 shadow-[0_48px_88px_-52px_rgba(12,23,16,0.7)] backdrop-blur">
+                <h3 className="text-base font-semibold text-foreground">Productivity</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Improve yield windows and reduce downtime through timely applications.
+                </p>
+              </div>
+            </div>
+
+            {/* Row 1 Middle: farms image (story source) */}
+            <div className="order-1 relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100/80 shadow-[0_22px_48px_-28px_rgba(12,24,18,0.45)] lg:order-none lg:col-start-2 lg:row-start-1">
               <img
                 src="/branding/assets/header-image-2.jpg"
-                alt="Rigrow mobile irrigation overview"
-                className="h-full w-full object-cover"
+                alt="Farm fields overview"
+                className="aspect-[16/10] w-full object-contain"
+                loading="lazy"
               />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="solution" className="space-y-12">
-        <div className="space-y-5 text-center lg:text-left">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/60 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.42em] text-muted-foreground/80">
-            <span className="inline-flex h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
-            Advanced IAS
-          </div>
-          <h2 className="text-3xl font-semibold text-foreground sm:text-[2.25rem]">
-            Advanced Irrigation Planning, Monitoring and Analytics
-          </h2>
-          <p className="mx-auto max-w-3xl text-base leading-relaxed text-muted-foreground">
-            Comprehensive irrigation intelligence powered by remote sensing and real-time analytics keeps
-            every field and farm aligned with precise water requirements.
-          </p>
-        </div>
-        <div className="grid gap-6 lg:grid-cols-3">
-          {planningHighlights.map((item) => (
-            <article
-              key={item.id}
-              id={item.id}
-              className="flex h-full flex-col gap-5 rounded-[2.2rem] border border-border/60 bg-card/85 p-8 shadow-[0_36px_64px_-52px_rgba(12,24,18,0.6)] backdrop-blur"
-            >
-              <div className="overflow-hidden rounded-[1.6rem] border border-border/60 bg-background/60">
-                <img src={item.image} alt={item.alt} className="h-48 w-full object-cover" loading="lazy" />
+              <div className="pointer-events-none absolute left-[-14px] top-1/2 hidden -translate-y-1/2 rotate-180 text-muted-foreground/70 lg:block">
+                <ArrowRight className="h-6 w-6" />
               </div>
-              <div className="space-y-3">
-                <h3 className="text-xl font-semibold text-foreground">{item.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+              <div className="pointer-events-none absolute right-[-14px] top-1/2 hidden -translate-y-1/2 text-muted-foreground/70 lg:block">
+                <ArrowRight className="h-6 w-6" />
               </div>
-            </article>
-          ))}
-        </div>
-      </section>
+            </div>
 
-      <section id="monitoring" className="space-y-10">
-        <div className="space-y-4 text-center lg:text-left">
-          <h2 className="text-3xl font-semibold text-foreground sm:text-[2.25rem]">
-            Applied Water Efficiency Monitoring & Mobile Alerts
-          </h2>
-          <p className="mx-auto max-w-3xl text-base leading-relaxed text-muted-foreground">
-            Monitor applied water efficiency, maintain regulatory-ready records, and keep operators
-            connected to evolving field needs through proactive notifications.
-          </p>
-        </div>
-        <div className="grid gap-6 lg:grid-cols-2">
-          {monitoringHighlights.map((item) => (
-            <article
-              key={item.id}
-              id={item.id}
-              className="flex h-full flex-col gap-5 rounded-[2.2rem] border border-border/60 bg-card/85 p-8 shadow-[0_36px_64px_-52px_rgba(12,24,18,0.6)] backdrop-blur"
-            >
-              <div className="overflow-hidden rounded-[1.6rem] border border-border/60 bg-background/60">
-                <img src={item.image} alt={item.alt} className="h-48 w-full object-cover" loading="lazy" />
+            {/* Row 1 Right: fields count card (problem scale) */}
+            <div className="order-3 lg:order-none lg:col-start-3 lg:row-start-1">
+              <div className="relative rounded-[2.4rem] border border-border/60 bg-card/85 p-8 shadow-[0_48px_88px_-52px_rgba(12,23,16,0.7)] backdrop-blur">
+                <div className="flex items-center gap-3">
+                  <ArrowRight className="h-5 w-5 text-primary" />
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">Fields</p>
+                </div>
+                <p className="mt-3 text-4xl font-semibold tracking-tight text-foreground">100+</p>
+                <p className="text-sm text-muted-foreground">Fields across growers</p>
+                <div className="absolute -bottom-7 left-6 hidden items-center gap-2 text-xs font-medium text-muted-foreground lg:flex">
+                  <ArrowDownLeft className="h-4 w-4" />
+                  Next: Solution
+                </div>
               </div>
-              <div className="space-y-3">
-                <h3 className="text-xl font-semibold text-foreground">{item.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+            </div>
 
-      <section id="cta" className="relative overflow-hidden rounded-[3rem] border border-border/60 bg-background/85 px-8 py-14 shadow-[0_42px_96px_-52px_rgba(10,24,16,0.6)] backdrop-blur sm:px-12 lg:px-16">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsla(196,82%,63%,0.18),transparent_60%),radial-gradient(circle_at_bottom_left,hsla(155,73%,47%,0.22),transparent_58%)]" />
-        <div className="relative grid gap-8 lg:grid-cols-[1.2fr,0.8fr] lg:items-center">
-          <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/50 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-muted-foreground/80">
-              <span className="h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
-              Take Action
+            {/* Removed: single solution card; replaced with three stacked cards on the left */}
+          </div>
+        </section>
+        <section id="solution" className="space-y-12">
+          <div className="space-y-5 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/60 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.42em] text-muted-foreground/80">
+              <span className="inline-flex h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
+              Advanced IAS
             </div>
-            <div className="space-y-4">
-              <h2 className="text-3xl font-semibold text-foreground sm:text-[2.25rem]">
-                Ready to Optimize Your Irrigation Strategy?
-              </h2>
-              <p className="text-base leading-relaxed text-muted-foreground">
-                Join hundreds of farms already saving water and reducing costs with our advanced IAS
-                technology. Generate optimized schedules, monitor efficiency, and activate alerts that keep
-                your teams aligned in real time.
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Button
-                size="lg"
-                className="h-12 flex-1 rounded-full bg-gradient-to-r from-primary via-accent to-primary/80 px-8 text-sm font-semibold tracking-[0.24em] text-primary-foreground shadow-[0_28px_48px_-28px_hsla(153,73%,47%,0.75)] hover:brightness-110"
-                asChild
-              >
-                <a href="#contact">Start Free Trial</a>
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="h-12 flex-1 rounded-full border border-primary/40 bg-transparent px-8 text-sm font-semibold tracking-[0.24em] text-primary hover:bg-primary/10"
-                asChild
-              >
-                <a href="#monitoring">Learn More</a>
-              </Button>
-            </div>
-          </div>
-          <div className="relative rounded-[2.4rem] border border-border/60 bg-card/85 p-8 shadow-[0_48px_88px_-52px_rgba(12,23,16,0.7)] backdrop-blur">
-            <h3 className="text-2xl font-semibold text-foreground">IAS Outcomes</h3>
-            <ul className="mt-6 space-y-4 text-sm leading-relaxed text-muted-foreground">
-              <li>Daily irrigation intelligence tailored to field, crop, and soil conditions.</li>
-              <li>7-day precision plans refreshed every 24 hours for confident scheduling.</li>
-              <li>Optimized application schedules driving over 90% water utilization efficiency.</li>
-              <li>Applied water efficiency monitoring and historical reporting for compliance.</li>
-              <li>Mobile alerts that keep farm operators connected to evolving water needs.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="contact"
-        className="grid gap-12 rounded-[3rem] border border-border/60 bg-card/90 px-8 py-14 shadow-[0_42px_96px_-48px_rgba(10,24,16,0.58)] backdrop-blur sm:px-12 lg:grid-cols-[1.05fr,0.95fr] lg:px-16"
-      >
-        <div className="space-y-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-muted-foreground/80">
-            <span className="h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
-            Ready to get started
-          </div>
-          <h2 className="text-3xl font-semibold text-foreground sm:text-[2.25rem]">
-            Ready to Get Started? Ready to Transform Your Irrigation Strategy with IAS?
-          </h2>
-          <p className="text-base leading-relaxed text-muted-foreground">
-            Schedule your free demo and see how Rigrow equips your teams with precision irrigation planning,
-            monitoring, and alerting. Our specialists will tailor the Intelligent Agriculture System to your
-            crops, soil profile, and water delivery infrastructure.
-          </p>
-          <div className="rounded-2xl border border-border/60 bg-background/70 p-6 text-sm leading-relaxed text-muted-foreground">
-            Rigrow - Irrigation Water Management Solution: Advanced IAS for precision irrigation technology
-            and sustainable water management.
-          </div>
-        </div>
-        <Card className="relative overflow-hidden border-border/70 bg-card/95 shadow-[0_24px_60px_-38px_rgba(15,15,15,0.55)]">
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-primary/45 to-transparent"
-          />
-          <CardHeader className="space-y-2 p-6 pb-2">
-            <CardTitle className="text-xl font-semibold text-foreground">Schedule Your Free Demo</CardTitle>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Tell us about your irrigation goals and our team will reach out within one business day.
+            <h2 className="text-3xl font-semibold text-foreground sm:text-[2.25rem]">
+              Advanced Irrigation Planning, Monitoring and Analytics
+            </h2>
+            <p className="mx-auto max-w-3xl text-base leading-relaxed text-muted-foreground">
+              Comprehensive irrigation intelligence powered by remote sensing and real-time analytics keeps
+              every field and farm aligned with precise water requirements.
             </p>
-          </CardHeader>
-          <CardContent className="space-y-4 p-6 pt-3">
-            <form
-              className="space-y-4"
-              onSubmit={(event) => {
-                event.preventDefault()
-              }}
-            >
+          </div>
+          <div className="space-y-10">
+            {features.map((item, index) => (
+              <div
+                key={item.id}
+                id={item.id}
+                className={
+                  'group grid gap-6 lg:grid-cols-2 lg:items-center lg:gap-12 ' +
+                  (index % 2 === 0 ? '' : '')
+                }
+              >
+                <div
+                  className={
+                    (index % 2 === 0 ? 'lg:order-2 ' : '') +
+                    'relative overflow-hidden shadow-[0_20px_40px_-20px_rgba(12,24,18,0.4)] bg-gradient-to-br from-slate-50 via-white to-slate-100/80'
+                  }
+                >
+                  <img
+                    src={item.image}
+                    alt={item.alt}
+                    className="h-full w-full aspect-[16/9] lg:aspect-[7/4] object-contain transition-transform duration-500 group-hover:scale-[1.01]"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-slate-200/20 pointer-events-none" />
+                  <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-300/60 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-300/40 to-transparent" />
+                </div>
+                <div
+                  className={
+                    (index % 2 === 0 ? 'lg:order-1 ' : '') +
+                    'space-y-4'
+                  }
+                >
+                  <h3 className="text-2xl font-semibold text-foreground sm:text-[1.6rem]">{item.title}</h3>
+                  <p className="text-[0.95rem] leading-relaxed text-muted-foreground">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* monitoring section merged into solution with alternating layout */}
+
+        <section
+          id="cta"
+          className="relative overflow-hidden rounded-[3rem] border border-border/60 bg-background/85 px-8 py-14 shadow-[0_42px_96px_-52px_rgba(10,24,16,0.6)] backdrop-blur sm:px-12 lg:px-16"
+        >
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsla(196,82%,63%,0.18),transparent_60%),radial-gradient(circle_at_bottom_left,hsla(155,73%,47%,0.22),transparent_58%)]" />
+          <div className="relative grid gap-8 lg:grid-cols-[1.2fr,0.8fr] lg:items-center">
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/50 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-muted-foreground/80">
+                <span className="h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
+                Take Action
+              </div>
+              <div className="space-y-4">
+                <h2 className="text-3xl font-semibold text-foreground sm:text-[2.25rem]">
+                  Ready to Optimize Your Irrigation Strategy?
+                </h2>
+                <p className="text-base leading-relaxed text-muted-foreground">
+                  Join hundreds of farms already saving water and reducing costs with our advanced IAS
+                  technology. Generate optimized schedules, monitor efficiency, and activate alerts that keep
+                  your teams aligned in real time.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                <Button
+                  size="lg"
+                  className="h-12 flex-1 rounded-full bg-gradient-to-r from-primary via-accent to-primary/80 px-8 text-sm font-semibold tracking-[0.24em] text-primary-foreground shadow-[0_28px_48px_-28px_hsla(153,73%,47%,0.75)] hover:brightness-110"
+                  asChild
+                >
+                  <a href="#contact">Start Free Trial</a>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="h-12 flex-1 rounded-full border border-primary/40 bg-transparent px-8 text-sm font-semibold tracking-[0.24em] text-primary hover:bg-primary/10"
+                  asChild
+                >
+                  <a href="#solution">Learn More</a>
+                </Button>
+              </div>
+            </div>
+            <div className="relative rounded-[2.4rem] border border-border/60 bg-card/85 p-8 shadow-[0_48px_88px_-52px_rgba(12,23,16,0.7)] backdrop-blur">
+              <h3 className="text-2xl font-semibold text-foreground">IAS Outcomes</h3>
+              <ul className="mt-6 space-y-4 text-sm leading-relaxed text-muted-foreground">
+                <li>Daily irrigation intelligence tailored to field, crop, and soil conditions.</li>
+                <li>7-day precision plans refreshed every 24 hours for confident scheduling.</li>
+                <li>Optimized application schedules driving over 90% water utilization efficiency.</li>
+                <li>Applied water efficiency monitoring and historical reporting for compliance.</li>
+                <li>Mobile alerts that keep farm operators connected to evolving water needs.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="contact"
+          className="grid gap-12 px-8 py-14 sm:px-12 lg:grid-cols-[1.05fr,0.95fr] lg:px-16"
+        >
+          <div className="space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-muted-foreground/80">
+              <span className="h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
+              Partnership
+            </div>
+            <h2 className="text-3xl font-semibold text-foreground sm:text-[2.25rem]">
+              Ready to Partner with Rigrow? Transform Your Irrigation Strategy with IAS
+            </h2>
+            <p className="text-base leading-relaxed text-muted-foreground">
+              Partner with Rigrow to implement precision irrigation planning, monitoring, and alerting solutions. 
+              Our specialists will work with you to tailor the Intelligent Agriculture System to your
+              crops, soil profile, and water delivery infrastructure.
+            </p>
+            <div className="rounded-2xl border border-border/60 bg-background/70 p-6 text-sm leading-relaxed text-muted-foreground">
+              Rigrow - Irrigation Water Management Solution: Advanced IAS for precision irrigation technology
+              and sustainable water management partnerships.
+            </div>
+          </div>
+          <Card className="relative overflow-hidden border-border/70 bg-card/95 shadow-[0_24px_60px_-38px_rgba(15,15,15,0.55)]">
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-primary/45 to-transparent"
+            />
+            <CardHeader className="space-y-2 p-6 pb-2">
+              <CardTitle className="text-xl font-semibold text-foreground">Start Your Partnership</CardTitle>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                Tell us about your irrigation goals and our team will reach out within one business day.
+              </p>
+            </CardHeader>
+            <CardContent className="space-y-4 p-6 pt-3">
+              <form
+                className="space-y-4"
+                onSubmit={(event) => {
+                  event.preventDefault()
+                }}
+              >
               <Input
                 placeholder="Your name"
                 required
@@ -303,15 +374,16 @@ export function Home() {
                 className="min-h-[140px] w-full resize-y rounded-xl border border-border/70 bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground shadow-inner focus-visible:outline-none focus-visible:ring-[1.5px] focus-visible:ring-primary"
               />
               <Button type="submit" className="w-full rounded-full">
-                Send Request
+                Start Partnership
               </Button>
             </form>
             <p className="text-xs text-muted-foreground/80">
-              We respect your time and data. Your demo request is handled by the Rigrow team—no spam, ever.
+              We respect your time and data. Your partnership request is handled by the Rigrow team—no spam, ever.
             </p>
           </CardContent>
-        </Card>
-      </section>
+          </Card>
+        </section>
+      </Container>
     </div>
   )
 }
