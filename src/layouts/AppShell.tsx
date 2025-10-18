@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
+import type { MouseEvent } from 'react'
+import { Link, Outlet } from 'react-router-dom'
 import { AlignJustify, X } from 'lucide-react'
 import { Button } from '../components/ui/button'
-import { NavigationMenu } from '../components/ui/navigation-menu'
 import { Sheet } from '../components/ui/sheet'
 import { Container } from '../components/Container'
 import { Footer } from '../components/Footer'
@@ -10,13 +10,12 @@ import { cn } from '../lib/cn'
 import { ThemeToggle } from '../components/ThemeToggle'
 
 const navigation = [
-  { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
-  { label: 'Contact', to: '/contact' },
+  { label: 'Home', href: '#overview' },
+  { label: 'Solution', href: '#solution' },
+  { label: 'Contact', href: '#contact' },
 ]
 
 export function AppShell() {
-  const location = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -27,9 +26,21 @@ export function AppShell() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  useEffect(() => {
+  const handleAnchorNavigation = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    event.preventDefault()
     setMobileOpen(false)
-  }, [location.pathname])
+
+    const targetId = href.replace('#', '')
+    if (!targetId) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
+
+    const section = document.getElementById(targetId)
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -50,38 +61,37 @@ export function AppShell() {
             className="inline-flex items-center transition-transform duration-300 hover:translate-y-[-2px]"
           >
             <img
-              src="/branding/rigro-full-colored.svg"
+              src="/branding/Full Logo/Colored/colored logo.png"
               alt="Rigro logo"
               className="h-12 w-auto"
             />
           </Link>
           <div className="hidden flex-1 items-center justify-end gap-9 md:flex">
-            <NavigationMenu className="gap-9">
+            <nav className="flex gap-9">
               {navigation.map((item) => (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  className={({ isActive }) =>
-                    cn(
-                      'group relative px-1 text-[0.95rem] font-medium tracking-[0.08em] text-muted-foreground transition-all duration-200',
-                      'after:absolute after:-bottom-3 after:left-1/2 after:h-[2px] after:w-0 after:-translate-x-1/2 after:bg-primary after:opacity-0 after:transition-all after:duration-300 after:content-[""]',
-                      isActive
-                        ? 'text-foreground after:w-full after:opacity-100'
-                        : 'hover:text-foreground hover:after:w-full hover:after:opacity-100',
-                    )
-                  }
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(event) => handleAnchorNavigation(event, item.href)}
+                  className="group relative px-1 text-[0.95rem] font-medium tracking-[0.08em] text-muted-foreground transition-all duration-200 hover:text-foreground"
                 >
+                  <span
+                    aria-hidden="true"
+                    className="absolute -bottom-3 left-1/2 h-[2px] w-0 -translate-x-1/2 bg-primary opacity-0 transition-all duration-300 group-hover:w-full group-hover:opacity-100"
+                  />
                   {item.label}
-                </NavLink>
+                </a>
               ))}
-            </NavigationMenu>
+            </nav>
             <div className="flex items-center gap-2">
               <Button
                 size="sm"
                 className="h-10 rounded-full bg-gradient-to-br from-primary via-accent to-primary/90 px-5 text-[0.85rem] font-semibold tracking-[0.18em] text-primary-foreground shadow-[0_18px_34px_-20px_hsla(153_73%_47%_/_0.65)] transition-transform duration-300 hover:scale-[1.02] hover:brightness-105"
                 asChild
               >
-                <Link to="/contact">Get started</Link>
+                <a href="#contact" onClick={(event) => handleAnchorNavigation(event, '#contact')}>
+                  Get started
+                </a>
               </Button>
               <ThemeToggle />
             </div>
@@ -104,11 +114,11 @@ export function AppShell() {
             className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm dark:bg-black/70"
             onClick={() => setMobileOpen(false)}
           />
-          <div className="fixed inset-y-0 right-0 z-50 flex w-72 flex-col bg-background/95 shadow-xl backdrop-blur-xl">
-            <div className="flex items-center justify-between border-b border-border/60 px-6 py-4">
-              <span className="text-sm font-semibold uppercase tracking-[0.3em] text-muted-foreground">
-                Menu
-              </span>
+            <div className="fixed inset-y-0 right-0 z-50 flex w-72 flex-col bg-background/95 shadow-xl backdrop-blur-xl">
+              <div className="flex items-center justify-between border-b border-border/60 px-6 py-4">
+                <span className="text-sm font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+                  Menu
+                </span>
               <Button
                 variant="ghost"
                 size="icon"
@@ -121,20 +131,14 @@ export function AppShell() {
             </div>
             <nav className="flex flex-1 flex-col gap-2 px-6 py-6">
               {navigation.map((item) => (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  className={({ isActive }) =>
-                    cn(
-                      'rounded-xl px-3 py-2 text-base font-medium transition-all duration-200',
-                      isActive
-                        ? 'bg-secondary/70 text-foreground shadow-sm'
-                        : 'text-muted-foreground hover:bg-secondary/60 hover:text-foreground',
-                    )
-                  }
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-xl px-3 py-2 text-base font-medium text-muted-foreground transition-all duration-200 hover:bg-secondary/60 hover:text-foreground"
+                  onClick={(event) => handleAnchorNavigation(event, item.href)}
                 >
                   {item.label}
-                </NavLink>
+                </a>
               ))}
             </nav>
             <div className="flex items-center justify-between border-t border-border/60 px-6 py-4">

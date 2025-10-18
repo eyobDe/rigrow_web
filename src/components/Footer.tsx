@@ -1,31 +1,30 @@
 import { Link } from 'react-router-dom'
 import { Container } from './Container'
 import { Button } from './ui/button'
-import { Input } from './ui/input'
 
 const footerNavigation = [
   {
-    title: 'Company',
+    title: 'Solution',
     links: [
-      { label: 'About Rigro', to: '/about' },
-      { label: 'Our impact', to: '/about#impact' },
-      { label: 'Careers', to: '#careers' },
-    ],
-  },
-  {
-    title: 'Solutions',
-    links: [
-      { label: 'Grower experience', to: '#grower-experience' },
-      { label: 'Carbon financing', to: '#carbon-financing' },
-      { label: 'Insights & AI', to: '#insights' },
+      { label: 'Overview', href: '#overview' },
+      { label: 'Irrigation Planning', href: '#solution' },
+      { label: 'Monitoring & Alerts', href: '#monitoring' },
     ],
   },
   {
     title: 'Resources',
     links: [
-      { label: 'Brand kit', to: '#brand-kit' },
-      { label: 'Investor deck', to: '#investor' },
-      { label: 'Press center', to: '#press' },
+      { label: 'Water Efficiency Insights', href: '#monitoring' },
+      { label: 'Optimization Schedules', href: '#solution' },
+      { label: 'Request Demo', href: '#contact' },
+    ],
+  },
+  {
+    title: 'Support',
+    links: [
+      { label: 'Schedule Demo', href: '#contact' },
+      { label: 'Start Free Trial', href: '#contact' },
+      { label: 'Contact Team', href: '#contact' },
     ],
   },
 ]
@@ -45,20 +44,21 @@ export function Footer() {
           <div className="space-y-7">
             <Link
               to="/"
-              className="flex items-center gap-4 text-foreground transition-transform duration-300 hover:translate-y-[-2px]"
+              className="inline-flex items-center text-foreground transition-transform duration-300 hover:translate-y-[-2px]"
             >
               <img
-                src="/branding/rigro-logo.svg"
-                alt="Rigro full logo"
+                src="/branding/Full Logo/Colored/colored logo.png"
+                alt="Rigro logo"
                 className="h-12 w-auto"
               />
-              <span className="text-lg font-semibold tracking-[0.28em] text-[#39783e] dark:text-primary">
-                Rigro
-              </span>
             </Link>
             <p className="max-w-xl text-base leading-relaxed text-muted-foreground">
-              Rigro equips regenerative agritech teams with a unified operating system—bridging field
-              intelligence, carbon finance, and partner storytelling for measurable climate wins.
+              Rigrow - Irrigation Water Management Solution. Advanced IAS (Intelligent Agriculture System)
+              for precision irrigation technology and sustainable water management.
+            </p>
+            <p className="max-w-xl text-base leading-relaxed text-muted-foreground">
+              A hybrid remote sensing and sensor-based approach delivers the right amount of water, where and
+              when needed, empowering operators with actionable intelligence for every field.
             </p>
             <div className="grid gap-4 sm:grid-cols-3">
               {contactDetails.map((item) => (
@@ -80,34 +80,35 @@ export function Footer() {
           <div className="rounded-[2.5rem] border border-border/60 bg-background/75 p-10 shadow-[0_42px_72px_-46px_rgba(12,24,18,0.6)] backdrop-blur">
             <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-muted-foreground/80">
               <span className="h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
-              Newsletter
+              Take Action
             </div>
             <h3 className="mt-6 text-[1.7rem] font-semibold tracking-tight text-foreground">
-              Stay close to the field.
+              Ready to Optimize Your Irrigation Strategy?
             </h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Monthly product updates, grower spotlights, and regenerative playbooks straight to your inbox.
+              Join hundreds of farms already saving water and reducing costs with our advanced IAS
+              technology. Generate optimized schedules, monitor applied water efficiency, and communicate
+              field-level needs in real time.
             </p>
-            <form
-              className="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-4"
-              onSubmit={(event) => event.preventDefault()}
-            >
-              <Input
-                type="email"
-                required
-                placeholder="you@organization.com"
-                className="h-12 rounded-full border-border/60 bg-background/90 px-5 text-sm text-foreground placeholder:text-muted-foreground/70 focus-visible:ring-primary"
-              />
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Button
-                type="submit"
                 size="lg"
-                className="h-12 rounded-full bg-gradient-to-r from-primary via-accent to-primary/85 px-8 text-sm font-semibold tracking-[0.22em] text-primary-foreground shadow-[0_24px_44px_-28px_hsla(153,73%,47%,0.7)] hover:brightness-110"
+                className="h-12 flex-1 rounded-full bg-gradient-to-r from-primary via-accent to-primary/85 px-8 text-sm font-semibold tracking-[0.22em] text-primary-foreground shadow-[0_24px_44px_-28px_hsla(153,73%,47%,0.7)] hover:brightness-110"
+                asChild
               >
-                Join
+                <a href="#contact">Start Free Trial</a>
               </Button>
-            </form>
-            <p className="mt-2 text-xs text-muted-foreground/80">
-              We respect your inbox. Unsubscribe any time.
+              <Button
+                variant="outline"
+                size="lg"
+                className="h-12 flex-1 rounded-full border-border/70 px-8 text-sm font-semibold tracking-[0.22em] text-foreground hover:bg-primary/10"
+                asChild
+              >
+                <a href="#monitoring">Learn More</a>
+              </Button>
+            </div>
+            <p className="mt-4 text-xs text-muted-foreground/80">
+              Ready to Transform Your Irrigation Strategy with IAS? Schedule your free demo today.
             </p>
           </div>
         </div>
@@ -121,21 +122,12 @@ export function Footer() {
               <ul className="space-y-3">
                 {group.links.map((link) => (
                   <li key={link.label}>
-                    {link.to.startsWith('#') ? (
-                      <a
-                        href={link.to}
-                        className="text-sm font-medium text-foreground transition-colors hover:text-primary"
-                      >
-                        {link.label}
-                      </a>
-                    ) : (
-                      <Link
-                        to={link.to}
-                        className="text-sm font-medium text-foreground transition-colors hover:text-primary"
-                      >
-                        {link.label}
-                      </Link>
-                    )}
+                    <a
+                      href={link.href}
+                      className="text-sm font-medium text-foreground transition-colors hover:text-primary"
+                    >
+                      {link.label}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -144,13 +136,13 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col gap-4 border-t border-border/60 pt-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <span>&copy; {new Date().getFullYear()} Rigro. A Quanomic Project.</span>
+          <span>&copy; {new Date().getFullYear()} Rigrow. Advanced IAS for precision irrigation.</span>
           <div className="flex flex-wrap items-center gap-6 text-sm font-medium text-foreground">
             <a className="transition-colors hover:text-primary" href="mailto:hello@rigro.app">
               Email
             </a>
-            <a className="transition-colors hover:text-primary" href="#linkedin">
-              LinkedIn
+            <a className="transition-colors hover:text-primary" href="#contact">
+              Schedule Demo
             </a>
             <a className="transition-colors hover:text-primary" href="#privacy">
               Privacy
