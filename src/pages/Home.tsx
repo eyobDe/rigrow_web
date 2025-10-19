@@ -1,8 +1,8 @@
 import { Button } from '../components/ui/button'
-import { ArrowDownLeft, ArrowRight, CheckCircle2 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Input } from '../components/ui/input'
 import { Container } from '../components/Container'
+import { PrecisionAgriStory } from '../sections/PrecisionAgri'
 
 const stats = [
   { value: '20%', caption: 'Less water wasted across irrigated acres' },
@@ -135,77 +135,7 @@ export function Home() {
       </section>
 
       <Container className="flex flex-col gap-24 py-20">
-        <section id="story" className="space-y-8">
-          <div className="space-y-3 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/60 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.42em] text-muted-foreground/80">
-              <span className="inline-flex h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
-              Precision Farming
-            </div>
-            <h2 className="text-3xl font-semibold text-foreground sm:text-[2.25rem]">Precision Farming is Here</h2>
-            <p className="mx-auto max-w-3xl text-base leading-relaxed text-muted-foreground">
-              Multiple growers, many fields, one consistent challenge. See how field scale complexity rolls up to
-              100+ fields and how Rigrow streamlines planning into equitable, efficient, productive actions.
-            </p>
-          </div>
-
-          <div className="relative grid gap-6 lg:grid-cols-3 lg:auto-rows-max lg:gap-10">
-            {/* Left: Solution cards (stacked) */}
-            <div className="order-3 space-y-4 lg:order-none lg:col-start-1 lg:row-start-1 lg:self-center">
-              <div className="rounded-[2.4rem] border border-border/60 bg-card/85 p-6 sm:p-8 shadow-[0_48px_88px_-52px_rgba(12,23,16,0.7)] backdrop-blur">
-                <h3 className="text-base font-semibold text-foreground">Equity</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  Fair water allocation and schedule priorities across fields and growers.
-                </p>
-              </div>
-              <div className="rounded-[2.4rem] border border-border/60 bg-card/85 p-6 sm:p-8 shadow-[0_48px_88px_-52px_rgba(12,23,16,0.7)] backdrop-blur">
-                <h3 className="text-base font-semibold text-foreground">Efficiency</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  Reduce water and energy waste with optimized routes and precise timing.
-                </p>
-              </div>
-              <div className="rounded-[2.4rem] border border-border/60 bg-card/85 p-6 sm:p-8 shadow-[0_48px_88px_-52px_rgba(12,23,16,0.7)] backdrop-blur">
-                <h3 className="text-base font-semibold text-foreground">Productivity</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  Improve yield windows and reduce downtime through timely applications.
-                </p>
-              </div>
-            </div>
-
-            {/* Row 1 Middle: farms image (story source) */}
-            <div className="order-1 relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100/80 shadow-[0_22px_48px_-28px_rgba(12,24,18,0.45)] lg:order-none lg:col-start-2 lg:row-start-1">
-              <img
-                src="/branding/assets/header-image-2.jpg"
-                alt="Farm fields overview"
-                className="aspect-[16/10] w-full object-contain"
-                loading="lazy"
-              />
-              <div className="pointer-events-none absolute left-[-14px] top-1/2 hidden -translate-y-1/2 rotate-180 text-muted-foreground/70 lg:block">
-                <ArrowRight className="h-6 w-6" />
-              </div>
-              <div className="pointer-events-none absolute right-[-14px] top-1/2 hidden -translate-y-1/2 text-muted-foreground/70 lg:block">
-                <ArrowRight className="h-6 w-6" />
-              </div>
-            </div>
-
-            {/* Row 1 Right: fields count card (problem scale) */}
-            <div className="order-3 lg:order-none lg:col-start-3 lg:row-start-1">
-              <div className="relative rounded-[2.4rem] border border-border/60 bg-card/85 p-8 shadow-[0_48px_88px_-52px_rgba(12,23,16,0.7)] backdrop-blur">
-                <div className="flex items-center gap-3">
-                  <ArrowRight className="h-5 w-5 text-primary" />
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">Fields</p>
-                </div>
-                <p className="mt-3 text-4xl font-semibold tracking-tight text-foreground">100+</p>
-                <p className="text-sm text-muted-foreground">Fields across growers</p>
-                <div className="absolute -bottom-7 left-6 hidden items-center gap-2 text-xs font-medium text-muted-foreground lg:flex">
-                  <ArrowDownLeft className="h-4 w-4" />
-                  Next: Solution
-                </div>
-              </div>
-            </div>
-
-            {/* Removed: single solution card; replaced with three stacked cards on the left */}
-          </div>
-        </section>
+        <PrecisionAgriStory />
         <section id="solution" className="space-y-12">
           <div className="space-y-5 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/60 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.42em] text-muted-foreground/80">
