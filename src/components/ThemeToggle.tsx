@@ -4,7 +4,7 @@ import { cn } from '../lib/cn'
 
 type Theme = 'light' | 'dark'
 
-const STORAGE_KEY = 'rigro-ui-theme'
+const STORAGE_KEY = 'rigrow-ui-theme'
 
 export function ThemeToggle({ className }: { className?: string }) {
   const [mounted, setMounted] = useState(false)
@@ -12,8 +12,7 @@ export function ThemeToggle({ className }: { className?: string }) {
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY) as Theme | null
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    const initialTheme = stored ?? (systemPrefersDark ? 'dark' : 'light')
+    const initialTheme = stored ?? 'light'
     setTheme(initialTheme)
     setMounted(true)
   }, [])
@@ -59,4 +58,3 @@ export function ThemeToggle({ className }: { className?: string }) {
     </button>
   )
 }
-

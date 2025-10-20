@@ -6,7 +6,7 @@ const solutions = [
   {
     id: 'equity',
     title: 'Equitable Water Plans',
-    description: 'Rigro balances water delivery across every block, matching crop stage, soil and capacity.',
+    description: 'Rigrow balances water delivery across every block, matching crop stage, soil and capacity.',
     icon: Scale,
   },
   {
@@ -60,10 +60,10 @@ export function PrecisionAgriStory() {
             Precision Agriculture Story
           </div>
           <h2 className="precision-agri__title">
-            How Rigro Empowers Farmers Through Precision Agriculture
+            How Rigrow Empowers Farmers Through Precision Agriculture
           </h2>
           <p className="precision-agri__subtitle">
-            From intelligent solutions to measurable field impact — one connected story of water, analytics, and people.
+            From intelligent solutions to measurable field impact - one connected story of water, analytics, and people.
           </p>
         </div>
 
@@ -74,7 +74,7 @@ export function PrecisionAgriStory() {
             className="precision-agri__solutions"
             data-inview="false"
           >
-            <span className="precision-agri__label">Rigro Solutions</span>
+            <span className="precision-agri__label">Rigrow Solutions</span>
             <div className="precision-agri__solutions-list">
               {solutions.map((solution, idx) => {
                 const Icon = solution.icon
@@ -122,13 +122,13 @@ export function PrecisionAgriStory() {
             <div className="precision-agri__image-wrapper">
               <img
                 src="/branding/assets/farmers.png"
-                alt="Rigro agronomists working with farmers in the field"
+                alt="Rigrow agronomists working with farmers in the field"
                 className="precision-agri__image"
               />
               <div className="precision-agri__image-glow" aria-hidden="true" />
             </div>
             <p className="precision-agri__caption">
-              Rigro connects analytics, water, and people — enabling measurable field impact.
+              Rigrow connects analytics, water, and people - enabling measurable field impact.
             </p>
             {/* Mobile arrow */}
             <svg className="precision-agri__mobile-arrow" viewBox="0 0 160 60" aria-hidden="true">

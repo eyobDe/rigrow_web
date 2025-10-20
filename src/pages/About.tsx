@@ -22,9 +22,9 @@ export function About() {
   return (
     <section className="space-y-12">
       <div className="space-y-4">
-        <h2>About Rigro</h2>
+        <h2>About Rigrow</h2>
         <p className="max-w-3xl text-base leading-relaxed text-muted-foreground">
-          Rigro is a Quanomic initiative focused on accelerating regenerative agriculture through digital
+          Rigrow is a Quanomic initiative focused on accelerating regenerative agriculture through digital
           platforms that respect brand, data, and field realities. We build connective tissue between
           insight and action so teams can steward growth responsibly.
         </p>

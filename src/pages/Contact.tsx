@@ -9,7 +9,7 @@ export function Contact() {
         <h2>Contact</h2>
         <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
           We would love to learn about your regenerative initiatives. Email us directly or leave a note and
-          the Rigro team will respond within two business days.
+          the Rigrow team will respond within two business days.
         </p>
       </div>
       <Card className="relative max-w-xl overflow-hidden border-border/70 bg-card/95 shadow-[0_24px_60px_-38px_rgba(15,15,15,0.55)]">
@@ -23,8 +23,8 @@ export function Contact() {
         <CardContent className="space-y-5 p-6 pt-3">
           <div className="text-sm leading-relaxed text-muted-foreground">
             Email us anytime at{' '}
-            <a href="mailto:hello@rigro.app" className="font-medium text-foreground hover:text-primary">
-              hello@rigro.app
+            <a href="mailto:hello@rigrow.app" className="font-medium text-foreground hover:text-primary">
+              hello@rigrow.app
             </a>
             .
           </div>

@@ -14,33 +14,13 @@
   justify-content: center;
   padding: clamp(3rem, 6vh, 5rem) clamp(2rem, 5vw, 4rem);
   overflow: hidden;
-  
-  /* Brand gradient background */
-  background: linear-gradient(
-    135deg,
-    hsl(153, 45%, 16%) 0%,
-    hsl(152, 42%, 22%) 35%,
-    hsl(151, 40%, 28%) 70%,
-    hsl(150, 38%, 24%) 100%
-  );
-  
-  box-shadow: 
-    0 4px 24px rgba(12, 32, 20, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: transparent;
+  box-shadow: none;
 }
 
 /* Ambient light overlay */
 .precision-agri::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.85;
-  background: 
-    radial-gradient(circle at 15% 25%, rgba(96, 205, 148, 0.18) 0%, transparent 50%),
-    radial-gradient(circle at 85% 30%, rgba(255, 196, 94, 0.14) 0%, transparent 55%),
-    radial-gradient(circle at 50% 80%, rgba(96, 205, 148, 0.1) 0%, transparent 60%);
-  mix-blend-mode: screen;
+  display: none;
 }
 
 /* Inner Container */
@@ -52,6 +32,7 @@
   display: flex;
   flex-direction: column;
   gap: clamp(2.5rem, 5vh, 3.5rem);
+  color: var(--foreground);
 }
 
 /* Header */
@@ -70,14 +51,14 @@
   align-self: flex-start;
   padding: 0.35rem 1rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
+  background: var(--muted);
   backdrop-filter: blur(8px);
   font-size: 0.64rem;
   font-weight: 600;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--muted-foreground);
 }
 
 .precision-agri__badge-dot {
@@ -86,21 +67,21 @@
   height: 0.5rem;
   border-radius: 50%;
   background: linear-gradient(135deg, #60cd94 0%, #ffc45e 100%);
-  box-shadow: 0 0 8px rgba(96, 205, 148, 0.6);
+  box-shadow: 0 0 8px rgba(96, 205, 148, 0.35);
 }
 
 .precision-agri__title {
   font-size: clamp(2rem, 3.5vw, 2.85rem);
   font-weight: 600;
   line-height: 1.15;
-  color: rgba(255, 255, 255, 0.96);
+  color: var(--foreground);
   letter-spacing: -0.01em;
 }
 
 .precision-agri__subtitle {
   font-size: clamp(0.98rem, 1.6vw, 1.08rem);
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.76);
+  color: var(--muted-foreground);
   max-width: 42rem;
 }
 
@@ -121,7 +102,7 @@
   font-weight: 600;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--muted-foreground);
   margin-bottom: 1.5rem;
 }
 
@@ -157,16 +138,15 @@
   gap: 1.15rem;
   padding: 1.5rem 1.65rem;
   border-radius: 1.75rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 
-    0 8px 32px -12px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  
+  background-color: var(--card);
+  background-image: linear-gradient(155deg, color-mix(in srgb, var(--card) 82%, var(--primary) 18%) 0%, color-mix(in srgb, var(--card) 90%, var(--primary) 10%) 100%);
+  border: 1px solid color-mix(in srgb, var(--border) 55%, var(--primary) 45%);
+  box-shadow: 0 22px 48px -28px rgba(6, 95, 70, 0.35);
+  backdrop-filter: none;
+
   /* Stagger effect */
   transform: translateX(calc(var(--card-index) * 0.65rem));
-  transition: 
+  transition:
     transform 0.35s ease,
     box-shadow 0.35s ease,
     border-color 0.35s ease,
@@ -175,11 +155,9 @@
 
 .precision-agri__solution-card:hover {
   transform: translateX(calc(var(--card-index) * 0.65rem)) translateY(-0.35rem);
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(96, 205, 148, 0.35);
-  box-shadow: 
-    0 16px 48px -16px rgba(96, 205, 148, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  background-image: linear-gradient(150deg, color-mix(in srgb, var(--card) 72%, var(--primary) 28%) 0%, color-mix(in srgb, var(--card) 84%, var(--primary) 16%) 100%);
+  border-color: color-mix(in srgb, var(--primary) 70%, transparent);
+  box-shadow: 0 26px 52px -26px rgba(6, 95, 70, 0.45);
 }
 
 .precision-agri__solution-icon {
@@ -190,9 +168,9 @@
   width: 2.75rem;
   height: 2.75rem;
   border-radius: 1.25rem;
-  background: linear-gradient(135deg, rgba(96, 205, 148, 0.22) 0%, rgba(96, 205, 148, 0.08) 100%);
-  color: rgba(196, 255, 222, 0.95);
-  box-shadow: inset 0 0 12px rgba(96, 205, 148, 0.15);
+  background: linear-gradient(135deg, rgba(96, 205, 148, 0.16) 0%, rgba(96, 205, 148, 0.04) 100%);
+  color: var(--primary);
+  box-shadow: inset 0 0 12px rgba(96, 205, 148, 0.12);
 }
 
 .precision-agri__solution-content {
@@ -205,14 +183,14 @@
 .precision-agri__solution-title {
   font-size: 1.05rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.94);
+  color: var(--foreground);
   line-height: 1.3;
 }
 
 .precision-agri__solution-desc {
   font-size: 0.92rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--muted-foreground);
 }
 
 /* ===================================================
@@ -244,10 +222,9 @@
   max-width: 32rem;
   border-radius: 2.5rem;
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: 
-    0 24px 64px -24px rgba(0, 0, 0, 0.6),
-    inset 0 0 48px rgba(12, 28, 20, 0.5);
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: none;
   overflow: hidden;
 }
 
@@ -284,7 +261,7 @@
   font-size: 1rem;
   line-height: 1.65;
   text-align: center;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--muted-foreground);
   font-style: italic;
   letter-spacing: 0.01em;
 }
@@ -316,22 +293,22 @@
   gap: 1.25rem;
   padding: 2.5rem 2rem;
   border-radius: 2.25rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 
-    0 16px 48px -20px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  background-color: var(--card);
+  background-image: linear-gradient(160deg, color-mix(in srgb, var(--card) 82%, var(--primary) 18%) 0%, color-mix(in srgb, var(--card) 90%, var(--primary) 10%) 100%);
+  border: 1px solid color-mix(in srgb, var(--border) 55%, var(--primary) 45%);
+  box-shadow: 0 26px 52px -30px rgba(6, 95, 70, 0.4);
   backdrop-filter: blur(12px);
-  transition: 
+  transition:
     transform 0.4s ease,
-    box-shadow 0.4s ease;
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
 }
 
 .precision-agri__impact-card:hover {
   transform: translateY(-0.5rem);
-  box-shadow: 
-    0 24px 64px -24px rgba(255, 196, 94, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  background-image: linear-gradient(155deg, color-mix(in srgb, var(--card) 72%, var(--primary) 28%) 0%, color-mix(in srgb, var(--card) 84%, var(--primary) 16%) 100%);
+  border-color: color-mix(in srgb, var(--primary) 70%, transparent);
+  box-shadow: 0 32px 52px -26px rgba(6, 95, 70, 0.45);
 }
 
 .precision-agri__impact-icon {
@@ -341,11 +318,11 @@
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 1.75rem;
-  background: linear-gradient(135deg, rgba(255, 196, 94, 0.25) 0%, rgba(255, 196, 94, 0.08) 100%);
-  color: rgba(255, 224, 140, 0.95);
-  box-shadow: 
-    inset 0 0 16px rgba(255, 196, 94, 0.2),
-    0 8px 24px -8px rgba(255, 196, 94, 0.3);
+  background: linear-gradient(135deg, rgba(96, 205, 148, 0.18) 0%, rgba(96, 205, 148, 0.06) 100%);
+  color: var(--primary);
+  box-shadow:
+    inset 0 0 16px rgba(96, 205, 148, 0.15),
+    0 8px 24px -8px rgba(96, 205, 148, 0.25);
 }
 
 .precision-agri__impact-metric {
@@ -353,11 +330,11 @@
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.96);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 224, 140, 0.9) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--foreground);
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: currentColor;
 }
 
 .precision-agri__impact-label {
@@ -365,15 +342,15 @@
   font-weight: 600;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.68);
+  color: var(--muted-foreground);
 }
 
 .precision-agri__impact-text {
   font-size: 0.95rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.76);
+  color: var(--muted-foreground);
   padding-top: 0.75rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid var(--border);
 }
 
 /* ===================================================

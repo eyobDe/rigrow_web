@@ -5,17 +5,17 @@ const footerNavigation = [
   {
     title: 'Products',
     links: [
-      { label: 'iCAD Software', href: '#' },
-      { label: 'CanalNET Software', href: '#' },
-      { label: 'Rigrow Irrigation Advisory Services', href: '#' },
-      { label: 'nobo Platform', href: '#' },
+      { label: 'iCAD Software', href: 'https://icad-canalnet.quanomics.com/' },
+      { label: 'CanalNET Software', href: 'https://icad-canalnet.quanomics.com/' },
+      { label: 'Rigrow Irrigation Advisory Services', href: 'https://icad-canalnet.quanomics.com/' },
+      { label: 'nobo Platform', href: 'https://icad-canalnet.quanomics.com/' },
     ],
   },
   {
     title: 'Company',
     links: [
       { label: 'About Us', href: '#' },
-      { label: 'Careers', href: '#' },
+      { label: 'Careers', href: 'https://talent.quanomics.com/' },
       { label: 'Press & Media', href: '#' },
       { label: 'Partners', href: '#' },
     ],
@@ -34,7 +34,7 @@ export function Footer() {
       <Container className="relative grid gap-16 py-16">
         {/* Top grid: Brand + columns */}
         <div className="grid gap-12 md:grid-cols-[1.2fr,0.9fr,0.9fr,1fr] md:items-start">
-          {/* Brand block (iCAD x CanalNET + Rigro info) */}
+          {/* Brand block (iCAD x CanalNET + Rigrow info) */}
           <div className="space-y-6">
             <Link
               to="/"
@@ -42,24 +42,16 @@ export function Footer() {
             >
               <img
                 src="/branding/Full Logo/Colored/colored logo.png"
-                alt="Rigro logo"
+                alt="Rigrow logo"
                 className="h-12 w-auto"
               />
             </Link>
-            <div className="space-y-3 text-muted-foreground">
-              <p className="text-base leading-relaxed">
-                Novel CAD software solutions with built-for-purpose design automation.
-              </p>
-              <p className="text-base leading-relaxed">
-                Empowering firms to deliver quality, speed and value!
-              </p>
-            </div>
-            <div className="rounded-2xl border border-border/60 bg-background/70 p-5 shadow-[0_22px_36px_-30px_rgba(12,23,18,0.6)]">
-              <p className="text-sm font-semibold text-foreground">Rigrow</p>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Irrigation Water Management Solution. Advanced IAS (Intelligent Agriculture System) for
-                precision irrigation technology and sustainable water management.
-              </p>
+            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-muted-foreground">
+              Rigrow
+            </p>
+            <div className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+              <p>Rigrow delivers precision irrigation planning intelligence tuned to each crop, field, and climate.</p>
+              <p>Built by Quanomics to help growers conserve water, reduce costs, and boost farm resilience.</p>
             </div>
           </div>
 

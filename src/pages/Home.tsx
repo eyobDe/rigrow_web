@@ -33,7 +33,7 @@ const planningHighlights = [
     image: '/branding/assets/optimized-application-schedule.png',
     alt: 'Optimized irrigation schedule dashboard',
     description:
-      'Generate optimized irrigation schedules based on the irrigation requirement, minimizing loss and driving water utilization efficiency to over 90%. Optimized schedules are shown to save up to 35% water, and up to 15% energy costs—a key benefit for pump-based systems.',
+      'Generate optimized irrigation schedules based on the irrigation requirement, minimizing loss and driving water utilization efficiency to over 90%. Optimized schedules are shown to save up to 35% water, and up to 15% energy costs - a key benefit for pump-based systems.',
   },
 ]
 
@@ -85,7 +85,7 @@ export function Home() {
             <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Button
                 size="lg"
-                className="h-10 rounded-full bg-primary px-6 text-sm font-semibold tracking-[0.22em] text-primary-foreground shadow-[0_24px_48px_-24px_rgba(127,96,51,0.8)] transition hover:brightness-110"
+                className="h-10 rounded-full bg-primary px-6 text-sm font-semibold tracking-[0.22em] text-primary-foreground shadow-[0_24px_48px_-24px_rgba(127,96,51,0.8)] transition-transform duration-200 hover:-translate-y-0.5 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-95"
                 asChild
               >
                 <a href="#contact">Get in Touch</a>
@@ -193,58 +193,6 @@ export function Home() {
         {/* monitoring section merged into solution with alternating layout */}
 
         <section
-          id="cta"
-          className="relative overflow-hidden rounded-[3rem] border border-border/60 bg-background/85 px-8 py-14 shadow-[0_42px_96px_-52px_rgba(10,24,16,0.6)] backdrop-blur sm:px-12 lg:px-16"
-        >
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsla(196,82%,63%,0.18),transparent_60%),radial-gradient(circle_at_bottom_left,hsla(155,73%,47%,0.22),transparent_58%)]" />
-          <div className="relative grid gap-8 lg:grid-cols-[1.2fr,0.8fr] lg:items-center">
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/50 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-muted-foreground/80">
-                <span className="h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
-                Take Action
-              </div>
-              <div className="space-y-4">
-                <h2 className="text-3xl font-semibold text-foreground sm:text-[2.25rem]">
-                  Ready to Optimize Your Irrigation Strategy?
-                </h2>
-                <p className="text-base leading-relaxed text-muted-foreground">
-                  Join hundreds of farms already saving water and reducing costs with our advanced IAS
-                  technology. Generate optimized schedules, monitor efficiency, and activate alerts that keep
-                  your teams aligned in real time.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <Button
-                  size="lg"
-                  className="h-12 flex-1 rounded-full bg-gradient-to-r from-primary via-accent to-primary/80 px-8 text-sm font-semibold tracking-[0.24em] text-primary-foreground shadow-[0_28px_48px_-28px_hsla(153,73%,47%,0.75)] hover:brightness-110"
-                  asChild
-                >
-                  <a href="#contact">Start Free Trial</a>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="h-12 flex-1 rounded-full border border-primary/40 bg-transparent px-8 text-sm font-semibold tracking-[0.24em] text-primary hover:bg-primary/10"
-                  asChild
-                >
-                  <a href="#solution">Learn More</a>
-                </Button>
-              </div>
-            </div>
-            <div className="relative rounded-[2.4rem] border border-border/60 bg-card/85 p-8 shadow-[0_48px_88px_-52px_rgba(12,23,16,0.7)] backdrop-blur">
-              <h3 className="text-2xl font-semibold text-foreground">IAS Outcomes</h3>
-              <ul className="mt-6 space-y-4 text-sm leading-relaxed text-muted-foreground">
-                <li>Daily irrigation intelligence tailored to field, crop, and soil conditions.</li>
-                <li>7-day precision plans refreshed every 24 hours for confident scheduling.</li>
-                <li>Optimized application schedules driving over 90% water utilization efficiency.</li>
-                <li>Applied water efficiency monitoring and historical reporting for compliance.</li>
-                <li>Mobile alerts that keep farm operators connected to evolving water needs.</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section
           id="contact"
           className="grid gap-12 px-8 py-14 sm:px-12 lg:grid-cols-[1.05fr,0.95fr] lg:px-16"
         >
@@ -257,7 +205,7 @@ export function Home() {
               Ready to Partner with Rigrow? Transform Your Irrigation Strategy with IAS
             </h2>
             <p className="text-base leading-relaxed text-muted-foreground">
-              Partner with Rigrow to implement precision irrigation planning, monitoring, and alerting solutions. 
+              Partner with Rigrow to implement precision irrigation planning, monitoring, and alerting solutions.
               Our specialists will work with you to tailor the Intelligent Agriculture System to your
               crops, soil profile, and water delivery infrastructure.
             </p>
@@ -308,7 +256,7 @@ export function Home() {
               </Button>
             </form>
             <p className="text-xs text-muted-foreground/80">
-              We respect your time and data. Your partnership request is handled by the Rigrow team—no spam, ever.
+              We respect your time and data. Your partnership request is handled by the Rigrow team - no spam, ever.
             </p>
           </CardContent>
           </Card>

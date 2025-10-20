@@ -26,6 +26,39 @@ export function AppShell() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMobileOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMobileOpen(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden'
+    }
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [mobileOpen])
+
   const handleAnchorNavigation = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
     event.preventDefault()
     setMobileOpen(false)
@@ -62,7 +95,7 @@ export function AppShell() {
           >
             <img
               src="/branding/Full Logo/Colored/colored logo.png"
-              alt="Rigro logo"
+              alt="Rigrow logo"
               className="h-12 w-auto"
             />
           </Link>
@@ -86,7 +119,7 @@ export function AppShell() {
             <div className="flex items-center gap-2">
               <Button
                 size="sm"
-                className="h-10 rounded-full bg-gradient-to-br from-primary via-accent to-primary/90 px-5 text-[0.85rem] font-semibold tracking-[0.18em] text-primary-foreground shadow-[0_18px_34px_-20px_hsla(153_73%_47%_/_0.65)] transition-transform duration-300 hover:scale-[1.02] hover:brightness-105"
+                className="relative h-10 overflow-hidden rounded-full bg-gradient-to-r from-primary via-emerald-400 to-primary/80 px-6 text-[0.85rem] font-semibold tracking-[0.18em] text-primary-foreground shadow-[0_18px_34px_-20px_rgba(12,90,60,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_-20px_rgba(12,90,60,0.6)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background active:translate-y-0 active:scale-95 active:brightness-95 before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.45),transparent_55%)] before:opacity-40 before:transition-opacity before:duration-300 hover:before:opacity-60"
                 asChild
               >
                 <a href="#contact" onClick={(event) => handleAnchorNavigation(event, '#contact')}>
@@ -104,21 +137,42 @@ export function AppShell() {
               className="rounded-full border border-border/60 bg-card/80 text-foreground hover:border-border hover:bg-card"
               onClick={() => setMobileOpen(true)}
               aria-label="Open navigation"
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-navigation-panel"
             >
               <AlignJustify className="h-5 w-5" />
             </Button>
           </div>
         </Container>
-        <Sheet data-open={mobileOpen ? 'true' : 'false'} role="dialog" aria-modal="true">
+        <Sheet
+          data-open={mobileOpen ? 'true' : 'false'}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="mobile-navigation-title"
+          className="md:hidden"
+        >
           <div
-            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm dark:bg-black/70"
+            aria-hidden="true"
+            className={cn(
+              'fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-opacity duration-300 dark:bg-black/70',
+              mobileOpen ? 'opacity-100' : 'pointer-events-none opacity-0',
+            )}
             onClick={() => setMobileOpen(false)}
           />
-            <div className="fixed inset-y-0 right-0 z-50 flex w-72 flex-col bg-background/95 shadow-xl backdrop-blur-xl">
-              <div className="flex items-center justify-between border-b border-border/60 px-6 py-4">
-                <span className="text-sm font-semibold uppercase tracking-[0.3em] text-muted-foreground">
-                  Menu
-                </span>
+          <nav
+            id="mobile-navigation-panel"
+            className={cn(
+              'fixed inset-y-0 right-0 z-50 flex w-[min(22rem,calc(100vw-2.5rem))] flex-col rounded-l-3xl border-l border-border/70 bg-background/95 pb-6 shadow-2xl backdrop-blur-xl transition-transform duration-300 sm:w-80',
+              mobileOpen ? 'translate-x-0' : 'translate-x-full',
+            )}
+          >
+            <div className="flex items-center justify-between border-b border-border/60 px-6 py-4">
+              <span
+                id="mobile-navigation-title"
+                className="text-sm font-semibold uppercase tracking-[0.3em] text-muted-foreground"
+              >
+                Menu
+              </span>
               <Button
                 variant="ghost"
                 size="icon"
@@ -129,25 +183,26 @@ export function AppShell() {
                 <X className="h-5 w-5" />
               </Button>
             </div>
-            <nav className="flex flex-1 flex-col gap-2 px-6 py-6">
+            <ul className="flex flex-1 flex-col gap-2 overflow-y-auto px-6 py-6">
               {navigation.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-xl px-3 py-2 text-base font-medium text-muted-foreground transition-all duration-200 hover:bg-secondary/60 hover:text-foreground"
-                  onClick={(event) => handleAnchorNavigation(event, item.href)}
-                >
-                  {item.label}
-                </a>
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    className="rounded-xl px-3 py-3 text-base font-medium text-muted-foreground transition-all duration-200 hover:bg-secondary/60 hover:text-foreground"
+                    onClick={(event) => handleAnchorNavigation(event, item.href)}
+                  >
+                    {item.label}
+                  </a>
+                </li>
               ))}
-            </nav>
-            <div className="flex items-center justify-between border-t border-border/60 px-6 py-4">
+            </ul>
+            <div className="mt-auto flex items-center justify-between border-t border-border/60 px-6 pt-4">
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground">
                 Theme
               </p>
               <ThemeToggle />
             </div>
-          </div>
+          </nav>
         </Sheet>
       </header>
       <main className="flex-1">

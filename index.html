@@ -6,11 +6,12 @@
     <title>Rigrow Web</title>
     <script>
       ;(() => {
-        const storageKey = 'rigro-ui-theme'
+        const storageKey = 'rigrow-ui-theme'
         const stored = localStorage.getItem(storageKey)
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-        if (stored === 'dark' || (!stored && prefersDark)) {
+        if (stored === 'dark') {
           document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
         }
       })()
     </script>
