@@ -140,7 +140,7 @@ export function Home() {
           <div className="space-y-5 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/60 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.42em] text-muted-foreground/80">
               <span className="inline-flex h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
-              Advanced IAS
+              Advanced Irrigation Advisory Services
             </div>
             <h2 className="text-3xl font-semibold text-foreground sm:text-[2.25rem]">
               Advanced Irrigation Planning, Monitoring and Analytics
@@ -202,7 +202,7 @@ export function Home() {
               Partnership
             </div>
             <h2 className="text-3xl font-semibold text-foreground sm:text-[2.25rem]">
-              Ready to Partner with Rigrow? Transform Your Irrigation Strategy with IAS
+              Ready to Partner with Rigrow? Transform Your Irrigation Strategy with Irrigation Advisory Services
             </h2>
             <p className="text-base leading-relaxed text-muted-foreground">
               Partner with Rigrow to implement precision irrigation planning, monitoring, and alerting solutions.
@@ -210,7 +210,7 @@ export function Home() {
               crops, soil profile, and water delivery infrastructure.
             </p>
             <div className="rounded-2xl border border-border/60 bg-background/70 p-6 text-sm leading-relaxed text-muted-foreground">
-              Rigrow - Irrigation Water Management Solution: Advanced IAS for precision irrigation technology
+              Rigrow - Irrigation Water Management Solution: Advanced Irrigation Advisory Services for precision irrigation technology
               and sustainable water management partnerships.
             </div>
           </div>

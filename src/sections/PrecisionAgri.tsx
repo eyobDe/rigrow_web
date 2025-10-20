@@ -57,7 +57,7 @@ export function PrecisionAgriStory() {
         <div className="precision-agri__header">
           <div className="precision-agri__badge">
             <span className="precision-agri__badge-dot" aria-hidden="true" />
-            Precision Agriculture Story
+            Precision Agriculture is Here
           </div>
           <h2 className="precision-agri__title">
             How Rigrow Empowers Farmers Through Precision Agriculture
@@ -185,7 +185,7 @@ export function PrecisionAgriStory() {
               </defs>
               <path
                 className="precision-agri__connector-path"
-                d="M 80 180 Q 280 240, 500 190 Q 720 140, 920 180"
+                d="M 80 240 Q 320 290, 520 255 Q 760 230, 920 275"
                 fill="none"
                 stroke="url(#story-gradient)"
                 strokeWidth="3.5"
